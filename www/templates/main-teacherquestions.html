@@ -1,0 +1,105 @@
+<!-- Teacher's Questions view -->
+<ion-view cache-view="false" view-title="Questions">
+<!-- <ion-nav-bar>
+  <ion-nav-back-button id="button" class="button-clear"
+    ng-click="myGoBack()"> 
+    <i class="ion-arrow-left-c"></i> Back 
+  </ion-nav-back-button>
+  </ion-nav-bar>
+ -->
+<ion-content id="teahchersquestions_background">
+<div id="teahchersquestions">
+    <h4>Select the question to create your quiz:</h4>
+    {{setDisplay()}}
+
+      <ion-list>
+        <div ng-repeat="curriculum in curriculum.Curriculum">
+          <ion-item class="item-stable"
+                    ng-click="toggleCurriculum(curriculum)"
+                    ng-class="{active: isCurriculumShown(curriculum)}">
+              <i class="icon" ng-class="isCurriculumShown(curriculum) ? 'ion-minus' : 'ion-plus'"></i>
+
+            {{curriculum.title}}
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="grade in curriculum.Grade"
+                    ng-show="isCurriculumShown(curriculum)"
+                    ng-click="toggleGrade(grade)"
+                    ng-class="{active: isGradeShown(grade)}">                  
+                    <i class="icon" ng-class="isGradeShown(grade) ? 'ion-minus' : 'ion-plus'"></i>
+
+            {{grade.title}}
+            <ion-item class="item-accordion"
+                    ng-repeat="subject in grade.Subject"
+                    ng-show="isGradeShown(grade)"
+                    ng-click="toggleSubject(subject)"
+                    ng-class="{active: isSubjectShown(subject)}">
+
+                    <i class="icon" ng-class="isSubjectShown(subject) ? 'ion-minus' : 'ion-plus'"></i>
+            
+            {{subject.title}}
+
+            <ion-item class="item-accordion"
+                    ng-repeat="unit in subject.Unit"
+                    ng-show="isSubjectShown(subject)"
+                    ng-click="toggleUnit(unit)"
+                    ng-class="{active: isUnitShown(unit)}">
+
+                    <i class="icon" ng-class="isUnitShown(unit) ? 'ion-minus' : 'ion-plus'"></i>
+            
+            {{unit.title}}
+
+            <ion-item class="item-accordion"
+                    ng-repeat="topic in unit.topics"
+                    ng-show="isUnitShown(unit)"
+                    ng-click="toggleTopic(topic)"
+                    ng-class="{active: isTopicShown(topic)}">
+
+                    <i class="icon" ng-class="isTopicShown(topic) ? 'ion-minus' : 'ion-plus'"></i>
+
+            {{topic.title}}
+
+            <ion-item class="item-accordion"
+                    ng-repeat="lo in topic.LO"
+                    ng-show="isTopicShown(topic)"
+                    ng-click="toggleLO(lo)"
+                    ng-class="{active: isLOShown(lo)}">
+
+                    <i class="icon" ng-class="isLOShown(lo) ? 'ion-minus' : 'ion-plus'"></i>
+
+            {{lo.title}}
+
+            <ion-item class="item-accordion"
+                    ng-repeat="q in sq"                
+                    ng-show="isLOShown(lo)"
+                    ng-click="selectQuestion(q.name)">
+            {{q.name}}
+          </ion-item>
+
+          </ion-item>
+
+          </ion-item>
+
+          </ion-item>
+
+          </ion-item> 
+
+          </ion-item>
+          
+
+        </div>
+      </ion-list>
+<br>
+<br>
+<h4>Grade to take the quiz:</h4>
+  <div class="item item-input">
+    <input type="text" ng-model="grade">
+  </div>
+  <br>
+<button id="button" class="button button-outline icon icon-left ion-android-done-all" ng-click="sendQuestions(grade)">
+  Create Quiz
+</button>
+</div>
+    </ion-content>
+
+</ion-view>

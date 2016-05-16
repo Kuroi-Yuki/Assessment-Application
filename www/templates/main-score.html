@@ -1,0 +1,26 @@
+<!-- Evaluation view -->
+<ion-view cache-view="false" view-title="Evaluation">
+<ion-content id="score_background" class="padding">
+<div id="score" class="list list-inset">
+<h4>You scored:</h4>
+<b>{{score}}</b> out of <b>{{display.length}}</b>
+<br>
+<br>
+The following are a review of all the questions with their correct answers:
+<div id="questions" class="list list-inset" ng-repeat="q in display">
+<b>{{q.q}}</b>
+
+<!-- The correct answer:-->
+<br><ans>{{q.a}}<ans>
+<br>
+
+</div>
+
+<br>
+<br>
+<button id="button" class="button button-outline icon icon-right ion-log-out" ng-click="logout()">
+	Logout
+</button>
+
+</ion-content>
+</ion-view>

@@ -1,0 +1,40 @@
+<!-- Teacher's Main view -->
+
+<ion-view cache-view="false" view-title="Teacher">
+<!-- <ion-nav-bar>
+  <ion-nav-back-button id="button" class="button-clear"
+    ng-click="GoBack()"> 
+    <i class="ion-arrow-left-c"></i> Back 
+  </ion-nav-back-button>
+  </ion-nav-bar> -->
+<ion-content id="teacher_background" class="padding">
+<div id="teacher" align="center" class="list list-inset">
+	
+
+	<button id="button" class="button button-outline icon icon-right ion-compose" ng-click="gotoCreateQuiz()">
+		Create A New Quiz
+	</button>
+	<br>
+	<br>
+	<!-- <button id="button" class="button button-outline icon icon-right ion-document-text" ng-click="gotoViewReports()">
+		View Reports
+	</button> -->
+    <div id= "r" ng-controller="DocumentController as vm" class="padding">
+        <p><button id="button" class="button button-outline icon icon-right ion-document-text" ng-click="vm.createPDFS()">View Reports</button></p> 
+    </div>
+</div>
+
+<script id="pdf-viewer.html" type="text/ng-template">  
+    <ion-modal-view>
+    <ion-header-bar>
+    <h1 class="title">Report</h1> 
+    <button ng-click="vm.modal.hide()" class="button button-icon icon ion-android-close"></button>
+</ion-header-bar>
+<ion-content>
+<ng-pdf ng-if="pdfUrl" template-url="templates/viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>  
+</ion-content>
+</ion-modal-view>
+</script>  
+
+</ion-content>
+</ion-view>

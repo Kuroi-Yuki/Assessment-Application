@@ -1,0 +1,25 @@
+<!--Login view-->
+<ion-view cache-view="false" view-title="Login">
+<ion-content id="login_background" class="padding">
+<div id="login" class="list list-inset">
+
+	<h4>Username</h4>
+	<div class="item item-input">
+		<input type="text" ng-model="username">
+
+	</div>
+	<h4>Password</h4>
+	<div class="item item-input">
+		<input type="password" ng-model="password">
+
+	</div>
+</div >
+<button id="button" class="button button-outline icon icon-right ion-log-in" ng-click="login(username, password)">
+	Login
+</button>
+<div>
+	{{msg.text}}
+</div>
+
+</ion-content>
+</ion-view>

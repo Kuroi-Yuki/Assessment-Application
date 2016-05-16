@@ -1,0 +1,138 @@
+<!-- Student's Questions view -->
+<ion-view cache-view="false" view-title="Questions">
+<ion-content id="questions_background" class="padding">
+<div id="questions" class="list list-inset">
+<!-- ng-repeat="question in Questions" -->
+  <h4>{{Questions[index].assessmentItem[0].itemBody[0].div[0].choiceInteraction[0].prompt}}</h4>
+  <div class="item item-input">
+   <input type="text" ng-model="Answers[Questions[index].assessmentItem[0]._identifier]">
+ </div>
+</div>
+<button id="button" ng-hide="next" class="button button-outline icon icon-right ion-android-arrow-dropright" ng-click="next=nextQuestion()">
+  Next Question
+</button>
+<button id="button" ng-show="next " class="button button-outline icon icon-right ion-android-arrow-dropright" ng-click="next=submitAnswers()">
+  Done
+</button>
+</ion-content>
+</ion-view>
+
+
+<!-- <ion-view view-title="Questions">
+<ion-content class="padding">
+<div class="list list-inset">
+
+<h4>{{q1.question}}sss</h4>
+  <div class="item item-input">
+   <input type="text" ng-model="a1">
+
+ </div>
+ <h4>{{q2.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a2">
+
+ </div>
+ <h4>{{q3.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a3">
+
+ </div>
+ <h4>{{q4.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a4">
+
+ </div>
+ <h4>{{q5.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a5">
+
+ </div>
+ <h4>{{q6.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a6">
+
+ </div>
+ <h4>{{q7.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a7">
+
+ </div>
+ <h4>{{q8.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a8">
+
+ </div>
+ <h4>{{q9.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a9">
+
+ </div>
+ <h4>{{q10.question}}sss</h4>
+ <div class="item item-input">
+   <input type="text" ng-model="a10">
+
+ </div>
+</div >
+
+<button class="button button-outline icon icon-right ion-android-arrow-dropright" ng-click="submitAnswers()">
+  Submit
+</button>
+</ion-content>
+</ion-view> -->
+
+
+
+ <!-- <ion-item class="item item-input-inset">
+{{q2.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a2">
+</label>
+</ion-item>
+<ion-item class="item item-input-inset">
+{{q3.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a3">
+</label>
+</ion-item>
+<ion-item class="item item-input-inset">
+{{q4.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a4">
+</label>
+</ion-item>
+<ion-item class="item item-input-inset">
+{{q5.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a5">
+</label>
+</ion-item>
+<ion-item class="item item-input-inset">
+{{q6.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a6">
+</label>
+</ion-item>
+<ion-item class="item item-input-inset">
+{{q7.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a7">
+</label>
+</ion-item>
+<ion-item class="item item-input-inset">
+{{q8.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a8">
+</label>
+</ion-item>
+<ion-item class="item item-input-inset">
+{{q9.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a9">
+</label>
+</ion-item>
+<ion-item class="item item-input-inset">
+{{q10.question}}
+<label class="item-input-wrapper">
+  <input type="text" ng-model="user.a10">
+</label>
+</ion-item> -->

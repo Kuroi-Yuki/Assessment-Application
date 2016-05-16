@@ -1,0 +1,18 @@
+<!--Student's Questions Loading view-->
+<ion-view cache-view="false" view-title="Quiz">
+<ion-content id="questions_background" class="padding">
+<div id="questions" class="list list-inset">
+<!-- ng-repeat="question in Questions" -->
+  <h4>You are about to start to start today's quiz</h4>
+   <h5>Please remember:</h5>
+   <h5>1. Only start when told to do so.</h5>
+   <h5>2. No CHEATING!!</h5>
+   <h5>3. The questions shall be in the form of multiple choice, True / False statement, Specific-answer question, etc.</h5>
+   <h5>4. You will be given 1 point for each correct answer.</h5>
+<br>
+<button id="button" class="button button-outline icon icon-right ion-android-arrow-dropright" ng-click="startQuiz()">  <!-- ng-click="nextQuestion()" -->
+  Start Quiz
+</button>
+</div>
+</ion-content>
+</ion-view>
