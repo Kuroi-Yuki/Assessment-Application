@@ -323,8 +323,8 @@ return{
     geolocation.Alt = position.coords.latitude; 
     geolocation.Long = position.coords.longitude; 
 /////////////// 
-alert(geolocation.Long); 
-alert(geolocation.Alt); 
+/*alert(geolocation.Long); 
+alert(geolocation.Alt); */
 } 
 
 function onError() { 

@@ -163,8 +163,8 @@ sensors.getState(onSuccess);
     //alert("acc object: " +$context.getAcceleration());
     //alert("acc: " +$context.getAcceleration());
     store.context = {light:illuminance,heatindex:THI,shaking:shaking,alt:geolocation.Alt,long:geolocation.Long};
-    alert(illuminance);
-    alert(THI);
+/*    alert(illuminance);
+    alert(THI);*/
 
     console.log(store);
 
@@ -216,8 +216,8 @@ sensors.getState(onSuccess);
     //alert("acc object: " +$context.getAcceleration());
     //alert("acc: " +$context.getAcceleration().toString());
     store.context = {light:illuminance,heatindex:THI,shaking:shaking,alt:geolocation.Alt,long:geolocation.Long};
-    alert(illuminance);
-    alert(THI);
+    /*alert(illuminance);
+    alert(THI);*/
 
     //mqtt stuff
     $mqtt.publish(JSON.stringify(store), "newAttempt", 1);
