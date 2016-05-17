@@ -107,6 +107,8 @@ message.destinationName = topic;
 message.qos = qos; 
 message.retained = true; 
 console.log(message.payloadString); 
+console.log(message); 
+
 mqtt.send(message); 
 }, 
 unsubscribe: function (topic) { 
@@ -317,7 +319,7 @@ return{
 
 .factory('$context', function() { 
   var geolocation = {}; 
-  var acc= {}; 
+  var acc= {"x":0, "y":0, "z":0, "absolute":0}; 
 
   var geoonSuccess = function(position){ 
     geolocation.Alt = position.coords.latitude; 
@@ -338,7 +340,7 @@ function accelerometerSuccess(acceleration) {
   acc.y= acceleration.y; 
   acc.z= acceleration.z; 
 
-  //acc.absolute = Math.sqrt((acc.x*acc.x) + (acc.y*acc.y) + ( acc.z* acc.z)); 
+  acc.absolute = Math.sqrt((acc.x*acc.x) + (acc.y*acc.y) + ( acc.z* acc.z)); 
   //alert(acc.absolute); 
 } 
 
@@ -348,12 +350,15 @@ function accelerometerError() {
 
 navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError); 
 
-
 return { 
   getlocation: function (){ 
     return geolocation; 
   }, 
   getAcceleration: function (){ 
+    alert(acc.x);
+alert(acc.y);
+alert(acc.z);
+alert(acc.absolute); 
     return acc.absolute; 
   } 
 } 

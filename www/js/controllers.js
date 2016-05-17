@@ -71,10 +71,10 @@ angular.module('starter.controllers', [])
   var timeinterval = 0;
   var store = {};
   var geolocation ={};
-  var shaking = 0;
+  var shake = 0;
 
   geolocation = $context.getlocation();
-  shaking = $context.getAcceleration();
+  shake = $context.getAcceleration();
   var illuminance=0;
   var THI = 0;
   /* $scope.illuminance= $context.getSensorData("LIGHT"); */
@@ -162,7 +162,9 @@ sensors.getState(onSuccess);
     store.timestamp = Date();
     //alert("acc object: " +$context.getAcceleration());
     //alert("acc: " +$context.getAcceleration());
-    store.context = {light:illuminance,heatindex:THI,shaking:shaking,alt:geolocation.Alt,long:geolocation.Long};
+    store.context = {light:illuminance,heatindex:THI,shaking:shake,alt:geolocation.Alt,long:geolocation.Long};
+    alert(store.context.shaking+" " + shake);
+
 /*    alert(illuminance);
     alert(THI);*/
 
@@ -215,7 +217,8 @@ sensors.getState(onSuccess);
     store.timestamp = Date();
     //alert("acc object: " +$context.getAcceleration());
     //alert("acc: " +$context.getAcceleration().toString());
-    store.context = {light:illuminance,heatindex:THI,shaking:shaking,alt:geolocation.Alt,long:geolocation.Long};
+    store.context = {light:illuminance,heatindex:THI,shaking:shake,alt:geolocation.Alt,long:geolocation.Long};
+    alert(store.context.shaking+" " + shake);
     /*alert(illuminance);
     alert(THI);*/
 
