@@ -4,10 +4,7 @@ angular.module('starter.controllers', [])
 .controller('LoadStudentQuestionsCtrl', function($scope, $state, $users, $mqtt, $questions) {
   //
   $scope.startQuiz = function(){
-    console.log($mqtt.getmessage());
-
     $questions.setquestions($mqtt.getmessage());
-
     console.log($questions.all());
 
     $state.go('main.studentquestions'); 
@@ -123,7 +120,6 @@ $interval(function(){
 sensors.getState(onSuccess);
 }, 100);
   
-
   $scope.nextQuestion = function() {
     end = new Date().getTime();
 
@@ -145,7 +141,6 @@ sensors.getState(onSuccess);
     console.log(curriculum);
     console.log(store.qID);
 
-    ///////////Other things that need storing
     store.questionID = $scope.Questions[$scope.index].assessmentItem[0]._identifier;
     if($scope.Answers[$scope.Questions[$scope.index].assessmentItem[0]._identifier] === $scope.Questions[$scope.index].assessmentItem[0].itemBody[0].div[0].choiceInteraction[0].simpleChoice)
     {
@@ -160,20 +155,13 @@ sensors.getState(onSuccess);
     store.username = $users.getCurrentusername();
     store.duration = timeinterval;
     store.timestamp = Date();
-    //alert("acc object: " +$context.getAcceleration());
-    //alert("acc: " +$context.getAcceleration());
     store.context = {light:illuminance,heatindex:THI,shaking:shake,alt:geolocation.Alt,long:geolocation.Long};
-    alert(store.context.shaking+" " + shake);
-
-/*    alert(illuminance);
-    alert(THI);*/
 
     console.log(store);
 
-    //mqtt stuff
+    //mqtt publish
     $mqtt.publish(JSON.stringify(store), "newAttempt", 1);    
-    //console.log($mqtt.getmessage());
-    
+
     start = new Date().getTime()
     return $questions.checkindex($scope.index++);
   }
@@ -198,9 +186,6 @@ sensors.getState(onSuccess);
     var slo = $scope.Questions[$scope.index].assessmentItem[0].Curriculum[0].LO;
     store.qID = curriculum + "_" + grade + "_" + subject + "_" + unit + "_" + topic + "_" + slo + "_" +  $scope.Questions[$scope.index].assessmentItem[0]._identifier;
 
-    //console.log(todisplay);
-
-    ///////////Other things that need storing
     store.questionID = $scope.Questions[$scope.index].assessmentItem[0]._identifier;
     if($scope.Answers[$scope.Questions[$scope.index].assessmentItem[0]._identifier] === $scope.Questions[$scope.index].assessmentItem[0].itemBody[0].div[0].choiceInteraction[0].simpleChoice)
     {
@@ -215,30 +200,22 @@ sensors.getState(onSuccess);
     store.username = $users.getCurrentusername();
     store.duration = timeinterval;
     store.timestamp = Date();
-    //alert("acc object: " +$context.getAcceleration());
-    //alert("acc: " +$context.getAcceleration().toString());
     store.context = {light:illuminance,heatindex:THI,shaking:shake,alt:geolocation.Alt,long:geolocation.Long};
-    alert(store.context.shaking+" " + shake);
-    /*alert(illuminance);
-    alert(THI);*/
 
-    //mqtt stuff
+    //mqtt publish
     $mqtt.publish(JSON.stringify(store), "newAttempt", 1);
 
     $score.setDisplay(todisplay);
 
  //go to the score view
  $state.go('main.score'); 
-
 }
-
 })
 
 /****************************************************** Student's Questions view Controller ******************************************************/
 .controller('ScoreCtrl', function($scope, $score,$mqtt,$state, $users, $HardwareBackButtonManager) {
   $HardwareBackButtonManager.disable();
   $scope.score = $score.getScore();
-  //console.log($score.getDisplay());
   $scope.display = $score.getDisplay();
 
   $scope.logout = function(){
@@ -248,7 +225,6 @@ sensors.getState(onSuccess);
     $users.setCurrentclass("");
 
     $state.go('main.login', {}, {reload: true});
-
   }
 })
 
@@ -263,7 +239,6 @@ $scope.gotoCreateQuiz = function() {
 $scope.gotoViewReports = function() {
   $state.go('main.reports'); 
 }
-
 })
 
 /****************************************************** Teacher's Questions view Controller ******************************************************/
@@ -271,12 +246,9 @@ $scope.gotoViewReports = function() {
   $scope.questions = [];
   $scope.curriculum = {};
   $scope.grade="";
-
-
   $scope.sq = [];
   var Tosend = [];
   id= 0;
-
   var k =0;
 
 $scope.setDisplay = function() {
@@ -379,7 +351,6 @@ $scope.setDisplay = function() {
     for(var i=0; i<$scope.questions.length;i++){
       console.log($scope.questions[i]);
         $scope.sq[j++]={name:($scope.questions[i].assessmentItem[0].itemBody[0].div[0].choiceInteraction[0].prompt), wholeq:$scope.questions[i]};
-
     } 
   }
 
@@ -390,7 +361,6 @@ $scope.setDisplay = function() {
       console.log(Tosend);
     }
   }
-
 
   $scope.sendQuestions = function(grade){
     $createquestions.setQuizID((new Date().getTime()).toString());
@@ -409,7 +379,6 @@ $scope.setDisplay = function() {
 /****************************************************** Analysis Reports view Controller ******************************************************/
 .controller('DocumentController', function($scope, $ionicModal, PDFSService,$mqtt){
         var vm = this;
-
         setDefaultsForPdfViewer($scope);
 
         // Initialize the modal view.
@@ -427,7 +396,7 @@ $scope.setDisplay = function() {
 
             $scope.pdfUrl = URL.createObjectURL(blob);
 
-                    // Display the modal view
+              // Display the modal view
               vm.modal.show();
 /*            PDFSService.createPdf(PDFFILE)
                 .then(function (pdf) {
