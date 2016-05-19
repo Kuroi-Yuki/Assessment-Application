@@ -1,4 +1,4 @@
-var ipaddress= "10.25.154.221"; 
+var ipaddress= "192.168.43.9"; 
 angular.module('starter.services', []) 
 
 /***************************Hardware Back Button Manager*****************************/
