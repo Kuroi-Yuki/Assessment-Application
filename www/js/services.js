@@ -1,6 +1,7 @@
 var ipaddress= "10.25.154.221"; 
 angular.module('starter.services', []) 
 
+/***************************Hardware Back Button Manager*****************************/
 .service( '$HardwareBackButtonManager', function($ionicPlatform){ 
   this.deregister = undefined; 
 
@@ -20,6 +21,7 @@ angular.module('starter.services', [])
   return this; 
 }) 
 
+/*****************************************MQTT services*************************************/
 .factory('$mqtt', function() { 
 var wsbroker = ipaddress; //mqtt websocket enabled broker 
 var wsport = 8005 // port for above 
@@ -41,7 +43,7 @@ var options = {
   onSuccess: function () { 
 //connection attempt timeout in seconds 
 console.log("mqtt connected"); 
-// Connection succeeded; subscribe to our topic, you can add multile lines of these 
+// Connection succeeded; subscribe to our topic
 if(currentrole === "student"){ 
   console.log(studentClass); 
 //var name="G2"; 
@@ -67,7 +69,6 @@ mqtt.connect(options);
 function onConnectionLost(response) { 
   setTimeout(MQTTconnect, reconnectTimeout); 
   console.log("connection lost: " + responseObject.errorMessage); 
-
 }; 
 
 function onMessageArrived(message) { 
@@ -90,7 +91,6 @@ return {
     else if(currentrole === "teacher"){ 
       return msg.payloadBytes; 
     } 
-
   }, 
 //Attempt to connect 
 init: function(currentclass, role) { 
@@ -107,23 +107,16 @@ message.destinationName = topic;
 message.qos = qos; 
 message.retained = true; 
 console.log(message.payloadString); 
-console.log(message); 
-
 mqtt.send(message); 
 }, 
 unsubscribe: function (topic) { 
   mqtt.unsubscribe(topic); 
   console.log("unsubscribe") 
-
-}/*, 
-subscribe: function(topic){ 
-mqtt.subscribe(topic); 
-}*/ 
-
+}
 } 
 }) 
 
-
+/*************************************User information service*******************************/
 .factory('$users', function($http) { 
 // Might use a resource here that returns a JSON array 
 var users = {}; 
@@ -138,7 +131,7 @@ return {
       users = response.data; 
     }) 
   }, 
-//should change so the server does the filtering, not the device////////// 
+//autentication function
 authenticate: function(username, pw) { 
   for (var i = 0; i < users.length; i++) { 
     console.log(users[i].key + username + users[i].value.password + pw) 
@@ -148,7 +141,6 @@ authenticate: function(username, pw) {
       if(currentrole === "student"){ 
         currentclass = users[i].value.grade; 
       } 
-//console.log(currentclass); 
 return true; 
 } 
 } 
@@ -179,10 +171,7 @@ currentclass = class;
 }) 
 
 .factory('$questions', function() { 
-
-
-//Should grab from couchdb 
-
+//Get Questions from CouchDB
 var Questions = []; 
 return { 
   setquestions: function(qs){ 
@@ -197,13 +186,13 @@ return {
     return Questions; 
   }, 
   checkindex: function(index){ 
-//console.log(Questions.length-2 == index); 
 return ((Questions.length - 2) == index); 
 } 
 } 
 
 }) 
 
+/************************************************Score handling service**********************************/
 .factory('$score', function() { 
   var score = 0; 
   var display = []; 
@@ -222,13 +211,11 @@ return ((Questions.length - 2) == index);
     }, 
     getDisplay:function(){ 
       return display; 
-
     } 
-
   } 
-
 }) 
 
+/*************************************************Quiz generation service*****************************************/
 .factory('$createquestions', function($http) { 
   var curriculum = {}; 
   var questions = []; 
@@ -242,21 +229,17 @@ return ((Questions.length - 2) == index);
   var quiz = {}; 
   var qID = ""; 
 
-
   var setCurriculumAll = function() { 
-//console.log(curriculum); 
 
 $http.get("http://"+ipaddress+":8080/curriculum") 
 .then(function(response) { 
   curriculum = response.data[0].value; 
-//console.log(curriculum); 
 }) 
 } 
 
 curriculum = setCurriculumAll(); 
 
 return{ 
-
   setCurriculum: function(curri) { 
     c=curri; 
   }, 
@@ -317,6 +300,7 @@ return{
 } 
 }) 
 
+/**************************************************Context data gathering service*********************************/
 .factory('$context', function() { 
   var geolocation = {}; 
   var acc= {"x":0, "y":0, "z":0, "absolute":0}; 
@@ -324,9 +308,6 @@ return{
   var geoonSuccess = function(position){ 
     geolocation.Alt = position.coords.latitude; 
     geolocation.Long = position.coords.longitude; 
-/////////////// 
-/*alert(geolocation.Long); 
-alert(geolocation.Alt); */
 } 
 
 function onError() { 
@@ -341,7 +322,6 @@ function accelerometerSuccess(acceleration) {
   acc.z= acceleration.z; 
 
   acc.absolute = Math.sqrt((acc.x*acc.x) + (acc.y*acc.y) + ( acc.z* acc.z)); 
-  //alert(acc.absolute); 
 } 
 
 function accelerometerError() { 
@@ -364,6 +344,7 @@ alert(acc.absolute);
 } 
 }) 
 
+/************************************************Dispaly analysis PDF service******************************************/
 .factory('PDFSService', function($q){ 
   console.log("PDFSService"); 
 
@@ -404,9 +385,6 @@ pdf.getBase64(function (recievedpdf) {
       stuff.Student_list.NameD, 
       stuff.Student_list.NameE, 
       stuff.Student_list.NameF, 
-
-
-
 
       { text: 'Items', style: 'subheader' }, 
       { 
@@ -452,7 +430,6 @@ pdf.getBase64(function (recievedpdf) {
       defaultStyle: { 
       } 
     } 
-
     return dd; 
   } 
 
