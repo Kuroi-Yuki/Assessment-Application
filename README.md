@@ -1,5 +1,4 @@
-# Assessment-Application
-Developing a Cordova Mobile App with Ionic Framework
+﻿Developing a Cordova Mobile App with Ionic Framework
 -----------------------------------------------------
 The steps here were done on x64 windows 8.1 machine.
 
@@ -119,9 +118,11 @@ The first step is to install NodeJS from https://nodejs.org/en/. Once it has bee
 •	nano: to communicate with CouchDB
 •	mqtt: to create MQTT publishers and subscribers
 •	http: to communicate with the R engine via http requests
+•	express: for http server functionalities
 •	fs: to access the file system on the devices
 •	json2csv: to convert the JSON files received via mqtt to csv and append them to the csv file
-All of the packages can be downloaded using the command: npm install <package name>
+•	sleep**: only for simulation purposes
+All of the packages can be downloaded using the command: >npm install <package name>
 
 - CouchDB server
 A local CouchDB server can be downloaded and installed from http://couchdb.apache.org/. The server runs on port 5984 and can be accessed immediately after installation via curl. The database can also be accessed via the graphic interface provided by Futon by typing http://localhost:5984/_utils/ into a web browser. Futon offers a simple method to access databases and generate views that can later be called from the NodeJS application.
@@ -135,3 +136,12 @@ The MQTT broker of choice for evaluation purposes is Mosquitto. It can be instal
 
 - HiveMQ
 The MQTT broker of choice system deployment purposes is HiveMQ. It can be installed from http://www.hivemq.com/ and comes with a simple publisher and subscriber for testing. 
+
+**********************************************************************************************
+The sample clients sim_student.js, sim_teacher_analysis.js, and sim_teacher_quiz.js can be used to test the system.
+In the client file sim_student.js, the code has been modified to simulate multithreading. For that, jxcore is required.
+
+The steps to install jxcore can be found in https://github.com/jxcore/jxcore
+after installing, simply run the student client using the command
+> jx sim_student.js
+you may also modify the code for sim_student.js and control the number of threads, and the number of tasks added to every thread.
