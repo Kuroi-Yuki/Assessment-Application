@@ -1,5 +1,5 @@
-﻿Server Code can be found: https://github.com/Salsaduckingbeel/IoT-project-core
-
+﻿Server Code: https://github.com/Salsaduckingbeel/IoT-project-core
+-----------------------------------------------------
 
 Developing a Cordova Mobile App with Ionic Framework
 -----------------------------------------------------
