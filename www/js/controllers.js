@@ -103,8 +103,8 @@ angular.module('starter.controllers', [])
 
   function onSuccess(values){
   illuminance = values[0];
-/*  $scope.humidity= values[1];
-  $scope.temp=values[2]; */
+ /* $scope.humidity= values[1];
+  $scope.temp=values[2];*/
   THI = C1 + (C2 * T) + (C3 * R) + (C4 * T * R) + (C5 * T2) + (C6 * R2) + (C7 * T2 * R) + (C8 * T * R2) + (C9 * T2 * R2);
 
 }
