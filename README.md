@@ -1,4 +1,7 @@
-﻿Developing a Cordova Mobile App with Ionic Framework
+﻿Server Code can be found: https://github.com/Salsaduckingbeel/IoT-project-core
+
+
+Developing a Cordova Mobile App with Ionic Framework
 -----------------------------------------------------
 The steps here were done on x64 windows 8.1 machine.
 
